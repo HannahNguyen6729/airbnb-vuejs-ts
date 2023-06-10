@@ -11,7 +11,7 @@
           <div id="logo">
             <a href="index.html"
               ><img
-                src="images/logo2.png"
+                src="images/logo.png"
                 data-sticky-logo="images/logo.png"
                 alt=""
             /></a>
