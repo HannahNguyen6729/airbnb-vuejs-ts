@@ -4,32 +4,38 @@ import BlogView from "../views/BlogView.vue";
 import RoomsView from "../views/RoomsView.vue";
 import RoomDetailView from "../views/RoomDetailView.vue";
 import ContactView from "../views/ContactView.vue";
+import AuthView from "../views/AuthView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "home",
+    name: "Home",
     component: HomeView,
   },
   {
     path: "/blog",
-    name: "blog",
+    name: "Blog",
     component: BlogView,
   },
   {
     path: "/rooms",
-    name: "rooms",
+    name: "Rooms",
     component: RoomsView,
   },
   {
     path: "/room-detail",
-    name: "room-detail",
+    name: "RoomDetail",
     component: RoomDetailView,
   },
   {
     path: "/contact",
-    name: "contact",
+    name: "Contact",
     component: ContactView,
+  },
+  {
+    path: "/auth",
+    name: "Auth",
+    component: AuthView,
   },
 ];
 
