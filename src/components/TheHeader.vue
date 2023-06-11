@@ -30,6 +30,16 @@
           <nav id="navigation" class="style-1">
             <ul id="responsive">
               <li>
+                <router-link to="/">Home</router-link>
+              </li>
+              <li>
+                <router-link to="/blog">Blog</router-link>
+              </li>
+              <li>
+                <router-link to="/contact">Contact</router-link>
+              </li>
+
+              <!-- <li>
                 <a class="current" href="#">Home</a>
                 <ul>
                   <li><a href="index.html">Home 1 (Modern)</a></li>
@@ -41,9 +51,9 @@
                   <li><a href="index-7.html">Home 7 (Video)</a></li>
                   <li><a href="index-8.html">Home 8 (Classic)</a></li>
                 </ul>
-              </li>
+              </li> -->
 
-              <li>
+              <!-- <li>
                 <a href="#">Listings</a>
                 <ul>
                   <li>
@@ -270,7 +280,7 @@
                     </ul>
                   </div>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </nav>
           <div class="clearfix"></div>
@@ -281,6 +291,9 @@
         <!-- Right Side Content / End -->
         <div class="right-side">
           <div class="header-widget">
+            <router-link to="/auth" class="sign-in popup-with-zoom-anim">
+              <i class="sl sl-icon-login"></i> Sign in</router-link
+            >
             <!-- User Menu -->
             <div class="user-menu">
               <div class="user-name">
