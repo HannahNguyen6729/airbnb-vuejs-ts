@@ -10,13 +10,9 @@
       </div>
       <a href="#"><i class="fa fa-map-marker"></i></a>
       <ul class="list-location">
-        <li>
+        <li v-for="(location, index) in locationList" :key="index">
           <span class="im im-icon-Location-2"></span>
-          <span class="location-item-title">Nha Trang </span>
-        </li>
-        <li>
-          <span class="im im-icon-Location-2"></span>
-          <span class="location-item-title">Can Tho </span>
+          <span class="location-item-title"> {{ location.name }} </span>
         </li>
       </ul>
     </div>
@@ -42,9 +38,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 
-export default defineComponent({});
+export default defineComponent({
+  setup() {
+    const store = useStore();
+    store.dispatch("moduleLocation/getLocations");
+    const locationList = computed(
+      () => store.state.moduleLocation.locationList
+    );
+    console.log("locationList", locationList);
+    return { locationList };
+  },
+});
 </script>
 
 <style lang="scss">
