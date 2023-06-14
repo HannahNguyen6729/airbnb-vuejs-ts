@@ -23,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
     component: RoomsView,
   },
   {
-    path: "/room-detail",
+    path: "/room-detail/:roomId",
     name: "RoomDetail",
     component: RoomDetailView,
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="col-lg-12 col-md-12">
     <div class="listing-item-container list-layout" data-marker-id="1">
-      <a href="listings-single-page.html" class="listing-item">
+      <div @click="handleClickRoomDetail(room?._id)" class="listing-item">
         <!-- Image -->
         <div class="listing-item-image">
           <img :src="room?.image" alt="" />
@@ -25,13 +25,14 @@
           <span class="like-icon"></span>
           <div class="listing-item-details">price: {{ room?.price }} Vnd</div>
         </div>
-      </a>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "RoomItem",
@@ -39,6 +40,15 @@ export default defineComponent({
     room: {
       type: Object,
     },
+  },
+  setup() {
+    const router = useRouter();
+    const handleClickRoomDetail = (roomId: string) => {
+      router.push(`/room-detail/${roomId}`);
+    };
+    return {
+      handleClickRoomDetail,
+    };
   },
 });
 </script>

@@ -7,7 +7,7 @@ const moduleLocation = {
     };
   },
   mutations: {
-    getLocationMutation(state: any, payload: any) {
+    setLocationMutation(state: any, payload: any) {
       state.locationList = payload;
       // console.log("state.locationList", state.locationList);
     },
@@ -15,7 +15,7 @@ const moduleLocation = {
   actions: {
     async getLocations(context: any, payloadNewKeyWord: string) {
       const locationList = await getLocationListAPI(payloadNewKeyWord);
-      context.commit("getLocationMutation", locationList);
+      context.commit("setLocationMutation", locationList);
     },
   },
 };

@@ -1,8 +1,11 @@
 import axiosAPI from ".";
 
-const getRoomListAPI = async (locationId: string) => {
+export const getRoomListAPI = async (locationId: string) => {
   const res = await axiosAPI.get(`/api/rooms?locationId=${locationId}`);
   return res;
 };
 
-export default getRoomListAPI;
+export const getRoomDetailAPI = async (roomId: string) => {
+  const res = await axiosAPI.get(`/api/rooms/${roomId}`);
+  return res;
+};

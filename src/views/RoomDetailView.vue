@@ -786,10 +786,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
+import { useRoute } from "vue-router";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "RoomDetailView",
+  setup() {
+    const store = useStore();
+    const route = useRoute();
+
+    store.dispatch("moduleRoom/getRoomDetail", route.params.roomId);
+    const roomDetail = computed(() => store.state.moduleRoom.roomDetail);
+
+    return { roomDetail };
+  },
 });
 </script>
 
