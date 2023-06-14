@@ -13,8 +13,8 @@ const moduleLocation = {
     },
   },
   actions: {
-    async getLocations(context: any) {
-      const locationList = await getLocationListAPI();
+    async getLocations(context: any, payloadNewKeyWord: string) {
+      const locationList = await getLocationListAPI(payloadNewKeyWord);
       context.commit("getLocationMutation", locationList);
     },
   },
