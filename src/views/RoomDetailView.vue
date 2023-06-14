@@ -13,14 +13,14 @@
           <div id="titlebar" class="listing-titlebar">
             <div class="listing-titlebar-title">
               <h2>
-                Sunny and Modern Apartment<span class="listing-tag"
-                  >Apartments</span
-                >
+                {{ roomDetail.name }}
+                <span class="listing-tag">Apartments</span>
               </h2>
               <span>
                 <a href="#listing-location" class="listing-address">
                   <i class="fa fa-map-marker"></i>
-                  2726 Shinn Street, New York
+                  {{ roomDetail.locationId?.province }},
+                  {{ roomDetail.locationId?.country }}
                 </a>
               </span>
               <div class="star-rating" data-rating="5">
@@ -46,29 +46,15 @@
           <div id="listing-overview" class="listing-section">
             <!-- Apartment Description -->
             <ul class="apartment-details">
-              <li>2 rooms</li>
-              <li>1 bedroom</li>
-              <li>1 bed</li>
-              <li>1 bathroom</li>
+              <li>{{ roomDetail.bedRoom }} rooms</li>
+              <li>{{ roomDetail.bedRoom }} bedroom</li>
+              <li>{{ roomDetail.guests }} guests</li>
+              <li>{{ roomDetail.bath }} bathroom</li>
             </ul>
 
             <!-- Description -->
             <p>
-              Ut euismod ultricies sollicitudin. Curabitur sed dapibus nulla.
-              Nulla eget iaculis lectus. Mauris ac maximus neque. Nam in mauris
-              quis libero sodales eleifend. Morbi varius, nulla sit amet rutrum
-              elementum, est elit finibus tellus, ut tristique elit risus at
-              metus.
-            </p>
-
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a
-              consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et
-              pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur
-              convallis fringilla diam sed aliquam. Sed tempor iaculis massa
-              faucibus feugiat. In fermentum facilisis massa, a consequat purus
-              viverra.
+              {{ roomDetail.description }}
             </p>
 
             <!-- Listing Contacts -->
@@ -136,35 +122,12 @@
             <div
               class="listing-slider-small mfp-gallery-container margin-bottom-0"
             >
-              <a
-                href="images/single-listing-02a.jpg"
-                data-background-image="images/single-listing-02a.jpg"
-                class="item mfp-gallery"
-                title="Title 2"
-              ></a>
-              <a
-                href="images/single-listing-01a.jpg"
-                data-background-image="images/single-listing-01a.jpg"
-                class="item mfp-gallery"
-                title="Title 1"
-              ></a>
-              <a
-                href="images/single-listing-03a.jpg"
-                data-background-image="images/single-listing-03a.jpg"
-                class="item mfp-gallery"
-                title="Title 3"
-              ></a>
-              <a
-                href="images/single-listing-04a.jpg"
-                data-background-image="images/single-listing-04a.jpg"
-                class="item mfp-gallery"
-                title="Title 3"
-              ></a>
+              <img :src="roomDetail.image" alt="" />
             </div>
           </div>
 
           <!-- Location -->
-          <div id="listing-location" class="listing-section">
+          <!-- <div id="listing-location" class="listing-section">
             <h3 class="listing-desc-headline margin-top-60 margin-bottom-30">
               Location
             </h3>
@@ -178,7 +141,7 @@
               ></div>
               <a href="#" id="streetView">Street View</a>
             </div>
-          </div>
+          </div> -->
 
           <!-- Reviews -->
           <div id="listing-reviews" class="listing-section">

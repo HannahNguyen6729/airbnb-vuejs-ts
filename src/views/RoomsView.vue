@@ -164,7 +164,7 @@
             <div class="row fs-switcher">
               <div class="col-md-6">
                 <!-- Showing Results -->
-                <p class="showing-results">14 Results Found</p>
+                <p class="showing-results">{{ rooms.length }} Results Found</p>
               </div>
             </div>
 
@@ -234,7 +234,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import RoomList from "../components/RoomsComp/RoomList.vue";
@@ -250,6 +250,9 @@ export default defineComponent({
     //get params from url
     console.log(route.params.locationId);
     store.dispatch("moduleRoom/getRooms", route.params.locationId);
+    const rooms = computed(() => store.state.moduleRoom.roomList);
+    console.log("rooms", rooms);
+    return { rooms };
   },
 });
 </script>
