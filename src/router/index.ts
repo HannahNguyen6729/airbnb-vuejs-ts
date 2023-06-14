@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
     component: BlogView,
   },
   {
-    path: "/rooms",
+    path: "/rooms/:locationId",
     name: "Rooms",
     component: RoomsView,
   },

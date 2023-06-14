@@ -168,7 +168,7 @@
               </div>
             </div>
 
-            <!-- Listings -->
+            <!-- Listings: Room list-->
             <room-list></room-list>
             <!-- Listings Container / End -->
 
@@ -216,6 +216,15 @@
         <div id="map-container">
           <div id="map" data-map-zoom="9" data-map-scroll="true">
             <!-- map goes here -->
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119318.69483062306!2d107.06722692659346!3d20.843445596426626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314a5796518cee87%3A0x55c6b0bcc85478db!2zSOG6oSBMb25nIEJheQ!5e0!3m2!1sen!2sfi!4v1686741548816!5m2!1sen!2sfi"
+              width="100%"
+              height="100%"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </div>
@@ -226,12 +235,18 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useRoute } from "vue-router";
 import RoomList from "../components/RoomsComp/RoomList.vue";
 
 export default defineComponent({
   name: "RoomsView",
   components: {
     RoomList,
+  },
+  setup() {
+    const router = useRoute();
+    //get params from url
+    console.log(router.params.locationId);
   },
 });
 </script>
