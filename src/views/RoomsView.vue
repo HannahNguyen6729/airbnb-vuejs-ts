@@ -236,6 +236,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useRoute } from "vue-router";
+import { useStore } from "vuex";
 import RoomList from "../components/RoomsComp/RoomList.vue";
 
 export default defineComponent({
@@ -244,9 +245,11 @@ export default defineComponent({
     RoomList,
   },
   setup() {
-    const router = useRoute();
+    const route = useRoute();
+    const store = useStore();
     //get params from url
-    console.log(router.params.locationId);
+    console.log(route.params.locationId);
+    store.dispatch("moduleRoom/getRooms", route.params.locationId);
   },
 });
 </script>
