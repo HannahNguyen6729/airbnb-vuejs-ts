@@ -1,4 +1,5 @@
 <template>
+  <!-- Sign In Popup -->
   <div
     class="mfp-wrap mfp-close-btn-in mfp-auto-cursor my-mfp-zoom-in mfp-ready my-bg"
     tabindex="-1"
@@ -15,17 +16,18 @@
           <div class="sign-in-form style-1">
             <div class="tabs-container alt">
               <!-- Login -->
-              <div class="tab-content" id="tab1" style="">
-                <form class="login">
+              <div class="tab-content" id="tab1">
+                <form method="post" class="login">
                   <p class="form-row form-row-wide">
-                    <label for="email"
-                      >Email:
-                      <i class="im im-icon-Mail"></i>
+                    <label for="username"
+                      >Username:
+                      <i class="im im-icon-Male"></i>
                       <input
                         type="text"
                         class="input-text"
-                        name="email"
-                        id="email"
+                        name="username"
+                        id="username"
+                        value=""
                       />
                     </label>
                   </p>
@@ -62,8 +64,8 @@
               </div>
             </div>
           </div>
-          <button title="Close (Esc)" type="button" class="mfp-close"></button>
         </div>
+        <!-- Sign In Popup / End -->
       </div>
     </div>
   </div>
@@ -73,7 +75,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "AuthView",
+  name: "SignIn",
 });
 </script>
 

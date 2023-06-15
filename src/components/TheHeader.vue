@@ -291,9 +291,12 @@
         <!-- Right Side Content / End -->
         <div class="right-side">
           <div class="header-widget">
-            <router-link to="/auth" class="sign-in popup-with-zoom-anim">
-              <i class="sl sl-icon-login"></i> Sign in</router-link
-            >
+            <router-link to="/sign-in" class="sign-in popup-with-zoom-anim">
+              <i class="sl sl-icon-login"></i> Sign in
+            </router-link>
+            <router-link to="/sign-up" class="sign-in popup-with-zoom-anim">
+              <i class="sl sl-icon-user"></i> Sign up
+            </router-link>
             <!-- User Menu -->
             <div class="user-menu">
               <div class="user-name">
@@ -324,9 +327,9 @@
               </ul>
             </div>
 
-            <a href="dashboard-add-listing.html" class="button border with-icon"
+            <!-- <a href="dashboard-add-listing.html" class="button border with-icon"
               >Add Listing <i class="sl sl-icon-plus"></i
-            ></a>
+            ></a> -->
           </div>
         </div>
         <!-- Right Side Content / End -->

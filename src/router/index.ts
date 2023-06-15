@@ -4,7 +4,8 @@ import BlogView from "../views/BlogView.vue";
 import RoomsView from "../views/RoomsView.vue";
 import RoomDetailView from "../views/RoomDetailView.vue";
 import ContactView from "../views/ContactView.vue";
-import AuthView from "../views/AuthView.vue";
+import SignIn from "../views/SignIn.vue";
+import SignUp from "../views/SignUp.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -33,9 +34,14 @@ const routes: Array<RouteRecordRaw> = [
     component: ContactView,
   },
   {
-    path: "/auth",
-    name: "Auth",
-    component: AuthView,
+    path: "/sign-in",
+    name: "SignIn",
+    component: SignIn,
+  },
+  {
+    path: "/sign-up",
+    name: "SignUp",
+    component: SignUp,
   },
 ];
 
