@@ -40,7 +40,80 @@
                         class="input-text"
                         name="email"
                         id="email2"
-                        value=""
+                      />
+                    </label>
+                  </p>
+
+                  <p class="form-row form-row-wide">
+                    <label for="phone"
+                      >Phone number:
+                      <i class="im im-icon-Phone"></i>
+                      <input
+                        type="number"
+                        class="input-text"
+                        name="phone"
+                        id="phone"
+                      />
+                    </label>
+                  </p>
+
+                  <p class="form-row form-row-wide">
+                    <label for="phone"
+                      >Birthday:
+                      <div style="display: flex">
+                        <select name="year">
+                          <option label="year">Year</option>
+                          <option
+                            v-for="year in yearArray"
+                            :key="year"
+                            :value="year"
+                          >
+                            {{ year }}
+                          </option>
+                        </select>
+                        <select name="month" id="">
+                          <option label="month">Month</option>
+                          <option
+                            v-for="month in monthArray"
+                            :key="month"
+                            :value="month"
+                          >
+                            {{ month }}
+                          </option>
+                        </select>
+                        <select name="day" id="">
+                          <option label="day">Day</option>
+                          <option
+                            v-for="day in dayArray"
+                            :key="day"
+                            :value="day"
+                          >
+                            {{ day }}
+                          </option>
+                        </select>
+                      </div>
+                    </label>
+                  </p>
+
+                  <p class="form-row form-row-wide">
+                    <label for="gender"
+                      >Gender:
+                      <select name="gender" id="">
+                        <option value="">Male</option>
+                        <option value="">Female</option>
+                      </select>
+                    </label>
+                  </p>
+
+                  <p class="form-row form-row-wide">
+                    <label for="address"
+                      >Address:
+                      <i class="im im-icon-Location-2"></i>
+                      <input
+                        type="text"
+                        class="input-text"
+                        name="address"
+                        id="address"
                       />
                     </label>
                   </p>
@@ -75,7 +148,6 @@
                     type="submit"
                     class="button border fw margin-top-10"
                     name="register"
-                    value="Register"
                   />
                 </form>
               </div>
@@ -90,9 +162,17 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { createNumberArray } from "../utils/helper";
 
 export default defineComponent({
   name: "SignUp",
+  setup() {
+    const monthArray = createNumberArray(1, 12);
+    const yearArray = createNumberArray(1960, 2023);
+    const dayArray = createNumberArray(1, 31);
+
+    return { monthArray, yearArray, dayArray };
+  },
 });
 </script>
 
@@ -102,5 +182,6 @@ export default defineComponent({
   top: 0px;
   position: absolute;
   height: 100vh;
+  overflow: scroll;
 }
 </style>
