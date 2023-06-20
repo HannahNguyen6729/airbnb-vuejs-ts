@@ -291,40 +291,20 @@
         <!-- Right Side Content / End -->
         <div class="right-side">
           <div class="header-widget">
-            <router-link to="/sign-in" class="sign-in popup-with-zoom-anim">
-              <i class="sl sl-icon-login"></i> Sign in
-            </router-link>
-            <router-link to="/sign-up" class="sign-in popup-with-zoom-anim">
-              <i class="sl sl-icon-user"></i> Sign up
-            </router-link>
             <!-- User Menu -->
-            <div class="user-menu">
+            <div v-if="userLogin.user" class="user-menu">
               <div class="user-name">
                 <span><img src="images/dashboard-avatar.jpg" alt="" /></span>Hi,
-                Tom!
+                {{ userLogin.user.name }}
               </div>
-              <ul>
-                <li>
-                  <a href="dashboard.html"
-                    ><i class="sl sl-icon-settings"></i> Dashboard</a
-                  >
-                </li>
-                <li>
-                  <a href="dashboard-messages.html"
-                    ><i class="sl sl-icon-envelope-open"></i> Messages</a
-                  >
-                </li>
-                <li>
-                  <a href="dashboard-bookings.html"
-                    ><i class="fa fa-calendar-check-o"></i> Bookings</a
-                  >
-                </li>
-                <li>
-                  <a href="index.html"
-                    ><i class="sl sl-icon-power"></i> Logout</a
-                  >
-                </li>
-              </ul>
+            </div>
+            <div v-else>
+              <router-link to="/sign-in" class="sign-in popup-with-zoom-anim">
+                <i class="sl sl-icon-login"></i> Sign in
+              </router-link>
+              <router-link to="/sign-up" class="sign-in popup-with-zoom-anim">
+                <i class="sl sl-icon-user"></i> Sign up
+              </router-link>
             </div>
 
             <!-- <a href="dashboard-add-listing.html" class="button border with-icon"
@@ -474,11 +454,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "TheHeader",
-  components: {},
+  setup() {
+    const store = useStore();
+
+    const userLogin = computed(() => store.state.moduleSignUp.userLogin);
+    return { userLogin };
+  },
 });
 </script>
 
