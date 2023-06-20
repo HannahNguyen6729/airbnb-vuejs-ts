@@ -162,22 +162,29 @@
           <!-- Booking Summary -->
           <div class="listing-item-container compact order-summary-widget">
             <div class="listing-item">
-              <img src="images/listing-item-04.jpg" alt="" />
+              <img :src="`${roomDetail.image}`" alt="" />
 
               <div class="listing-item-content">
                 <div class="numerical-rating" data-rating="5.0"></div>
-                <h3>Burger House</h3>
-                <span>2726 Shinn Street, New York</span>
+                <h3>{{ roomDetail.name }}</h3>
+                <span>
+                  {{ roomDetail.locationId.name }} -
+                  {{ roomDetail.locationId.province }}
+                </span>
               </div>
             </div>
           </div>
           <div class="boxed-widget opening-hours summary margin-top-0">
             <h3><i class="fa fa-calendar-check-o"></i> Booking Summary</h3>
             <ul>
-              <li>Date <span>10/20/2019</span></li>
+              <li>Date <span>10/20/2023</span></li>
               <li>Hour <span>5:30 PM</span></li>
-              <li>Guests <span>2 Adults</span></li>
-              <li class="total-costs">Total Cost <span>$9.00</span></li>
+              <li>
+                Guests <span> {{ roomDetail.guests }} Adults</span>
+              </li>
+              <li class="total-costs">
+                Total Cost <span>{{ roomDetail.price }} VND</span>
+              </li>
             </ul>
           </div>
           <!-- Booking Summary / End -->
@@ -193,11 +200,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
+import { useRoute } from "vue-router";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "BookingView",
   components: {},
+  setup() {
+    const route = useRoute();
+    const store = useStore();
+
+    store.dispatch("moduleRoom/getRoomDetail", route.params.roomId);
+    const roomDetail = computed(() => store.state.moduleRoom.roomDetail);
+
+    return { roomDetail };
+  },
 });
 </script>
 

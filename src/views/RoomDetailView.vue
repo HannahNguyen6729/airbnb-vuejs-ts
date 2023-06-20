@@ -525,7 +525,7 @@
                 </div>
               </div>
 
-              <!-- Uplaod Photos -->
+              <!-- Upload Photos -->
               <div class="uploadButton margin-top-15">
                 <input
                   class="uploadButton-input"
@@ -540,7 +540,7 @@
                 >
                 <span class="uploadButton-file-name"></span>
               </div>
-              <!-- Uplaod Photos / End -->
+              <!-- Upload Photos / End -->
             </div>
             <!-- Subratings Container / End -->
 
@@ -625,16 +625,10 @@
 
             <!-- Book Now -->
             <router-link
-              to="/booking/dnaksj"
+              :to="`/booking/${roomDetail._id}`"
               class="button book-now fullwidth margin-top-5"
               >Request To Book
             </router-link>
-
-            <!-- Estimated Cost -->
-            <!-- 				<div class="booking-estimated-cost">
-					<strong>Total Cost</strong>
-					<span>$49</span>
-				</div> -->
           </div>
           <!-- Book Now / End -->
 
