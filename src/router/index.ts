@@ -6,6 +6,7 @@ import RoomDetailView from "../views/RoomDetailView.vue";
 import ContactView from "../views/ContactView.vue";
 import SignIn from "../views/SignIn.vue";
 import SignUp from "../views/SignUp.vue";
+import BookingView from "../views/BookingView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -42,6 +43,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/sign-up",
     name: "SignUp",
     component: SignUp,
+  },
+  {
+    path: "/booking/:roomId",
+    name: "Booking",
+    component: BookingView,
   },
 ];
 
