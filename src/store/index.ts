@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import moduleLocation from "./modules/locationModule";
 import moduleRoom from "./modules/roomModule";
+import moduleSignUp from "./modules/signUpModule";
 
 export default createStore({
   state: {},
@@ -9,6 +10,7 @@ export default createStore({
   actions: {},
   modules: {
     moduleLocation: moduleLocation.moduleLocation,
-    moduleRoom: moduleRoom,
+    moduleRoom,
+    moduleSignUp,
   },
 });

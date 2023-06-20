@@ -16,7 +16,11 @@
             <div class="tabs-container alt">
               <!-- Register -->
               <div class="tab-content" id="tab2">
-                <form method="post" class="register">
+                <form
+                  @submit.prevent="handleSubmit"
+                  method="post"
+                  class="register"
+                >
                   <p class="form-row form-row-wide">
                     <label for="username2"
                       >Username:
@@ -26,7 +30,7 @@
                         class="input-text"
                         name="username"
                         id="username2"
-                        value=""
+                        v-model="userData.name"
                       />
                     </label>
                   </p>
@@ -40,6 +44,7 @@
                         class="input-text"
                         name="email"
                         id="email2"
+                        v-model="userData.email"
                       />
                     </label>
                   </p>
@@ -53,6 +58,7 @@
                         class="input-text"
                         name="phone"
                         id="phone"
+                        v-model="userData.phone"
                       />
                     </label>
                   </p>
@@ -61,7 +67,7 @@
                     <label for="phone"
                       >Birthday:
                       <div style="display: flex">
-                        <select name="year">
+                        <select name="year" v-model="userData.year">
                           <option label="year">Year</option>
                           <option
                             v-for="year in yearArray"
@@ -71,7 +77,7 @@
                             {{ year }}
                           </option>
                         </select>
-                        <select name="month" id="">
+                        <select name="month" id="" v-model="userData.month">
                           <option label="month">Month</option>
                           <option
                             v-for="month in monthArray"
@@ -81,7 +87,7 @@
                             {{ month }}
                           </option>
                         </select>
-                        <select name="day" id="">
+                        <select name="day" id="" v-model="userData.day">
                           <option label="day">Day</option>
                           <option
                             v-for="day in dayArray"
@@ -98,9 +104,9 @@
                   <p class="form-row form-row-wide">
                     <label for="gender"
                       >Gender:
-                      <select name="gender" id="">
-                        <option value="">Male</option>
-                        <option value="">Female</option>
+                      <select name="gender" id="" v-model="userData.gender">
+                        <option value="true">Male</option>
+                        <option value="false">Female</option>
                       </select>
                     </label>
                   </p>
@@ -114,6 +120,7 @@
                         class="input-text"
                         name="address"
                         id="address"
+                        v-model="userData.address"
                       />
                     </label>
                   </p>
@@ -127,19 +134,21 @@
                         type="password"
                         name="password1"
                         id="password1"
+                        v-model="userData.password"
                       />
                     </label>
                   </p>
 
                   <p class="form-row form-row-wide">
                     <label for="password2"
-                      >Repeat Password:
+                      >Confirm Password:
                       <i class="im im-icon-Lock-2"></i>
                       <input
                         class="input-text"
                         type="password"
                         name="password2"
                         id="password2"
+                        v-model="userData.resetPassword"
                       />
                     </label>
                   </p>
@@ -161,17 +170,56 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 import { createNumberArray } from "../utils/helper";
 
 export default defineComponent({
   name: "SignUp",
   setup() {
+    const store = useStore();
+    const router = useRouter();
+
     const monthArray = createNumberArray(1, 12);
     const yearArray = createNumberArray(1960, 2023);
     const dayArray = createNumberArray(1, 31);
 
-    return { monthArray, yearArray, dayArray };
+    const userData = reactive({
+      name: "",
+      email: "",
+      password: "",
+      resetPassword: "",
+      phone: "",
+      year: "",
+      month: "",
+      day: "",
+      gender: "",
+      address: "",
+    });
+
+    const handleSubmit = () => {
+      if (userData.password === userData.resetPassword) {
+        const modifiedUserData = {
+          name: userData.name,
+          email: userData.email,
+          password: userData.password,
+          phone: userData.phone,
+          birthday: `${userData.year}/${userData.month}/${userData.day}`,
+          gender: userData.gender === "true", //male-true/ female-false
+          address: userData.address,
+        };
+
+        store.dispatch("moduleSignUp/signUpAction", {
+          modifiedUserData,
+          router,
+        });
+      } else {
+        alert("Password & Confirm Password do not match");
+      }
+    };
+
+    return { monthArray, yearArray, dayArray, userData, handleSubmit };
   },
 });
 </script>
