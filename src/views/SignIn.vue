@@ -17,17 +17,17 @@
             <div class="tabs-container alt">
               <!-- Login -->
               <div class="tab-content" id="tab1">
-                <form method="post" class="login">
+                <form @submit.prevent="handleSubmit" class="login">
                   <p class="form-row form-row-wide">
-                    <label for="username"
-                      >Username:
-                      <i class="im im-icon-Male"></i>
+                    <label for="email"
+                      >Email:
+                      <i class="im im-icon-Mail"></i>
                       <input
                         type="text"
                         class="input-text"
-                        name="username"
-                        id="username"
-                        value=""
+                        name="email"
+                        id="email"
+                        v-model="userLogin.email"
                       />
                     </label>
                   </p>
@@ -41,6 +41,7 @@
                         type="password"
                         name="password"
                         id="password"
+                        v-model="userLogin.password"
                       />
                     </label>
                     <span class="lost_password">
@@ -72,10 +73,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "SignIn",
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+
+    const userLogin = reactive({
+      email: "",
+      password: "",
+    });
+
+    const handleSubmit = () => {
+      store.dispatch("moduleSignUp/logInAction", { userLogin, router });
+    };
+
+    return { userLogin, handleSubmit };
+  },
 });
 </script>
 
