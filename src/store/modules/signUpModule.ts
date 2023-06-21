@@ -14,6 +14,11 @@ const mutations = {
     state.userLogin = payload;
     localStorage.setItem("userLogin", JSON.stringify(payload));
   },
+  setUserLoginFromLocalStorageMutation(state: any, payload: any) {
+    if (payload !== null) {
+      state.userLogin = payload;
+    }
+  },
 };
 const actions = {
   async signUpAction(context: any, payload: any) {
@@ -29,6 +34,10 @@ const actions = {
     } catch (err) {
       alert("Email or password is incorrect!");
     }
+  },
+  loadUserLoginFromLocalStorage(context: any) {
+    const userLogin = JSON.parse(localStorage.getItem("userLogin") || "null");
+    context.commit("setUserLoginFromLocalStorageMutation", userLogin);
   },
 };
 

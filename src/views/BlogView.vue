@@ -17,6 +17,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useStore } from "vuex";
 import TheContent from "../components//BlogComp/TheContent.vue";
 import TheTitleBar from "../components//BlogComp/TheTitleBar.vue";
 
@@ -25,6 +26,10 @@ export default defineComponent({
   components: {
     TheContent,
     TheTitleBar,
+  },
+  setup() {
+    const store = useStore();
+    store.dispatch("moduleSignUp/loadUserLoginFromLocalStorage");
   },
 });
 </script>

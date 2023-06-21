@@ -40,6 +40,7 @@ import ThePlaces from "../components/ThePlaces.vue";
 import TheReviews from "../components/TheReviews.vue";
 import ThePlans from "../components/ThePlans.vue";
 import TheBlog from "../components/TheBlog.vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "HomeView",
@@ -50,6 +51,10 @@ export default defineComponent({
     TheReviews,
     ThePlans,
     TheBlog,
+  },
+  setup() {
+    const store = useStore();
+    store.dispatch("moduleSignUp/loadUserLoginFromLocalStorage");
   },
 });
 </script>

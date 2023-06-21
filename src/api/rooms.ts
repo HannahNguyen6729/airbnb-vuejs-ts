@@ -11,7 +11,7 @@ export const getRoomDetailAPI = async (roomId: string) => {
 };
 
 export const bookRoomAPI = async (payload: any) => {
-  const userLogin = JSON.parse(localStorage.getItem("userLogin") || "{}");
+  const userLogin = JSON.parse(localStorage.getItem("userLogin") || "null");
   const res = await axiosAPI.post(`/api/rooms/booking/`, payload, {
     headers: {
       token: userLogin.token,
