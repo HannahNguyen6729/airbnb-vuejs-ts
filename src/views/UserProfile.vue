@@ -47,8 +47,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
-import { useRouter } from "vue-router";
+import { defineComponent } from "vue";
+import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import UserDetailSideBar from "../components/UserDetailSideBar.vue";
 import BookedRooms from "../components/BookedRooms.vue";
@@ -61,7 +61,9 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
-    const router = useRouter();
+    const route = useRoute();
+    console.log("router", route.params.userId);
+    store.dispatch("moduleTicket/getTicketsAction", route.params.userId);
   },
 });
 </script>

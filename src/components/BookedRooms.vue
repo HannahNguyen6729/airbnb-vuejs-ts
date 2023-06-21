@@ -5,91 +5,8 @@
     <!-- Listings Container -->
     <div class="row">
       <!-- Listing Item -->
-      <div class="col-lg-12 col-md-12">
-        <div class="listing-item-container list-layout">
-          <a href="listings-single-page.html" class="listing-item">
-            <!-- Image -->
-            <div class="listing-item-image">
-              <img src="images/listing-item-01.jpg" alt="" />
-              <span class="tag">Eat & Drink</span>
-            </div>
-
-            <!-- Content -->
-            <div class="listing-item-content">
-              <div class="listing-badge now-open">Now Open</div>
-
-              <div class="listing-item-inner">
-                <h3>Tom's Restaurant</h3>
-                <span>964 School Street, New York</span>
-                <div class="star-rating" data-rating="3.5">
-                  <div class="rating-counter">(12 reviews)</div>
-                </div>
-              </div>
-
-              <span class="like-icon"></span>
-            </div>
-          </a>
-        </div>
-      </div>
-      <!-- Listing Item / End -->
-
-      <!-- Listing Item -->
-      <div class="col-lg-12 col-md-12">
-        <div class="listing-item-container list-layout">
-          <a href="listings-single-page.html" class="listing-item">
-            <!-- Image -->
-            <div class="listing-item-image">
-              <img src="images/listing-item-03.jpg" alt="" />
-              <span class="tag">Hotels</span>
-            </div>
-
-            <!-- Content -->
-            <div class="listing-item-content">
-              <div class="listing-item-inner">
-                <h3>Hotel Govendor</h3>
-                <span>778 Country Street, New York</span>
-                <div class="star-rating" data-rating="2.0">
-                  <div class="rating-counter">(17 reviews)</div>
-                </div>
-              </div>
-
-              <span class="like-icon"></span>
-
-              <div class="listing-item-details">
-                Starting from $59 per night
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <!-- Listing Item / End -->
-
-      <!-- Listing Item -->
-      <div class="col-lg-12 col-md-12">
-        <div class="listing-item-container list-layout">
-          <a href="listings-single-page.html" class="listing-item">
-            <!-- Image -->
-            <div class="listing-item-image">
-              <img src="images/listing-item-04.jpg" alt="" />
-              <span class="tag">Eat & Drink</span>
-            </div>
-
-            <!-- Content -->
-            <div class="listing-item-content">
-              <div class="listing-badge now-open">Now Open</div>
-
-              <div class="listing-item-inner">
-                <h3>Burger House</h3>
-                <span>2726 Shinn Street, New York</span>
-                <div class="star-rating" data-rating="5.0">
-                  <div class="rating-counter">(31 reviews)</div>
-                </div>
-              </div>
-
-              <span class="like-icon"></span>
-            </div>
-          </a>
-        </div>
+      <div v-for="(room, key) in rooms" :key="key" class="col-lg-12 col-md-12">
+        <room-item :room="room"></room-item>
       </div>
       <!-- Listing Item / End -->
 
@@ -250,10 +167,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
+import { useStore } from "vuex";
+import RoomItem from "../components/RoomsComp/RoomItem.vue";
 
 export default defineComponent({
   name: "BookedRooms",
+  components: { RoomItem },
+  setup() {
+    const store = useStore();
+    const rooms = computed(() => store.state.moduleTicket.roomsByUser);
+    console.log("rooms:", rooms);
+    return { rooms };
+  },
 });
 </script>
 
