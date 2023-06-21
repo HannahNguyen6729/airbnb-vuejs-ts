@@ -54,6 +54,28 @@
                 <span><img src="images/dashboard-avatar.jpg" alt="" /></span>Hi,
                 {{ userLogin.user.name }}
               </div>
+              <ul>
+                <li>
+                  <router-link :to="`/user-profile/${userLogin.user._id}`">
+                    <i class="sl sl-icon-user"></i> Profile
+                  </router-link>
+                </li>
+                <li>
+                  <a href="dashboard-messages.html"
+                    ><i class="sl sl-icon-envelope-open"></i> Messages</a
+                  >
+                </li>
+                <li>
+                  <a href="dashboard-bookings.html">
+                    <i class="fa fa-calendar-check-o"></i> Bookings
+                  </a>
+                </li>
+                <li>
+                  <a href="index.html">
+                    <i class="sl sl-icon-power"></i> Logout
+                  </a>
+                </li>
+              </ul>
             </div>
             <div v-else>
               <router-link to="/sign-in" class="sign-in popup-with-zoom-anim">
