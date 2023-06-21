@@ -35,12 +35,12 @@
           <div class="row">
             <div class="col-md-6">
               <label>Check in</label>
-              <input type="date" />
+              <input type="date" v-model="data.checkIn" />
             </div>
 
             <div class="col-md-6">
               <label>Check out</label>
-              <input type="date" />
+              <input type="date" v-model="data.checkOut" />
             </div>
           </div>
 
@@ -149,11 +149,12 @@
           </div>
           <!-- Payment Methods Accordion / End -->
 
-          <a
-            href="pages-booking-confirmation.html"
+          <button
+            @click="handleClick"
             class="button booking-confirmation-btn margin-top-40 margin-bottom-65"
-            >Confirm and Pay</a
           >
+            Confirm and Pay
+          </button>
         </div>
 
         <!-- Sidebar
@@ -200,7 +201,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, reactive } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 
@@ -210,11 +211,25 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const store = useStore();
+    const data = reactive({
+      checkIn: "",
+      checkOut: "",
+    });
+
+    const modifiedData = {
+      roomId: route.params.roomId,
+      checkIn: data.checkIn,
+      checkOut: data.checkOut,
+    };
 
     store.dispatch("moduleRoom/getRoomDetail", route.params.roomId);
     const roomDetail = computed(() => store.state.moduleRoom.roomDetail);
 
-    return { roomDetail };
+    const handleClick = () => {
+      store.dispatch("moduleRoom/bookRoomAction", modifiedData);
+    };
+
+    return { roomDetail, data, handleClick };
   },
 });
 </script>

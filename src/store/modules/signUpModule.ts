@@ -12,6 +12,7 @@ const mutations = {
   },
   loginMutation(state: any, payload: any) {
     state.userLogin = payload;
+    localStorage.setItem("userLogin", JSON.stringify(payload));
   },
 };
 const actions = {
