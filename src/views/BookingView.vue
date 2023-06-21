@@ -202,7 +202,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 export default defineComponent({
@@ -211,6 +211,8 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const store = useStore();
+    const router = useRouter();
+
     const data = reactive({
       checkIn: "",
       checkOut: "",
@@ -226,7 +228,7 @@ export default defineComponent({
     const roomDetail = computed(() => store.state.moduleRoom.roomDetail);
 
     const handleClick = () => {
-      store.dispatch("moduleRoom/bookRoomAction", modifiedData);
+      store.dispatch("moduleRoom/bookRoomAction", { modifiedData, router });
     };
 
     return { roomDetail, data, handleClick };

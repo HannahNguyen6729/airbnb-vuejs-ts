@@ -30,9 +30,11 @@ const actions = {
     context.commit("setRoomDetailMutation", roomDetail);
   },
   async bookRoomAction(context: any, payload: any) {
-    const bookedRoom = await bookRoomAPI(payload);
+    const bookedRoom = await bookRoomAPI(payload.modifiedData);
     console.log("bookRoom", bookedRoom);
     context.commit("setBookRoomMutation", bookedRoom);
+    const userLogin = JSON.parse(localStorage.getItem("userLogin") || "null");
+    payload.router.push(`/user-profile/${userLogin.user._id}`);
   },
 };
 
